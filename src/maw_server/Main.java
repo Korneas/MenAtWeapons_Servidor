@@ -12,7 +12,7 @@ public class Main extends PApplet {
 
 	@Override
 	public void settings() {
-		size(200, 200);
+		size(300, 500);
 	}
 
 	@Override
@@ -25,9 +25,17 @@ public class Main extends PApplet {
 		background(0);
 		log.ejecutar();
 	}
-
+	
 	@Override
-	public void stop() {
+	public void mouseClicked() {
+		log.click();
+	}
+	
+	@Override
+	public void exit(){
+		super.exit();
 		log.exit();
 	}
+	
+	
 }

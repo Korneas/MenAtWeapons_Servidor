@@ -15,7 +15,7 @@ public class Logica implements Observer {
 
 	public Logica(PApplet app) {
 		this.app = app;
-		usuarios = app.loadXML("../data/usuarios.xml");
+		usuarios = app.loadXML("data/usuarios.xml");
 		c = new Comunicacion();
 		Thread nt = new Thread(c);
 		nt.start();
@@ -30,26 +30,28 @@ public class Logica implements Observer {
 			int userID = profile[i].getInt("id");
 			String nombre = profile[i].getString("nombre");
 			String pass = profile[i].getString("password");
-			System.out.println(userID + " Usuario: " + nombre + " Contraseña: " + pass);
+			app.text(userID + " Usuario: " + nombre + " Contraseña: " + pass, 15, 30+(30*i));
 		}
 
 		idMax = profile[profile.length - 1].getInt("id");
 
-		if (app.mousePressed) {
-			int id = idMax + 1;
-			String name = "Carlos";
-			String pass = "carlitos123";
+	}
+	
+	public void click(){
+		int id = idMax + 1;
+		String name = "Carlos";
+		String pass = "carlitos123";
 
-			XML newUser = usuarios.addChild("user");
+		XML newUser = usuarios.addChild("user");
 
-			newUser.setInt("id", id);
-			newUser.setString("nombre", name);
-			newUser.setString("password", pass);
-		}
+		newUser.setInt("id", id);
+		newUser.setString("nombre", name);
+		newUser.setString("password", pass);
 	}
 
 	public void exit() {
-		app.saveXML(usuarios, "../data/usuarios.xml");
+		System.out.println("Bye bye hasta otro dia");
+		app.saveXML(usuarios, "data/usuarios.xml");
 	}
 
 	@Override

@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
- <usuarios>
-   <user id="0" nombre="Korneas" password="korneas0311">Korneas</user>
- </usuarios>
+<usuarios>
+  <user id="0" nombre="Korneas" password="korneas0311"></user>
+</usuarios>

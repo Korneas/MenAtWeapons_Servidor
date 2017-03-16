@@ -27,14 +27,9 @@ public class Main extends PApplet {
 	}
 	
 	@Override
-	public void mouseClicked() {
-		log.click();
-	}
-	
-	@Override
 	public void exit(){
-		super.exit();
 		log.exit();
+		super.exit();
 	}
 	
 	

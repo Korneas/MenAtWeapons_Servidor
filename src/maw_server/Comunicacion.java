@@ -8,10 +8,11 @@ public class Comunicacion extends Observable implements Runnable {
 
 	public MulticastSocket mSocket;
 	private final int PORT = 5000;
-	private final String GROUP_ADDRESS = "226.24.6.7";
+	private final String GROUP_ADDRESS = "226.24.6.8";
 	private boolean life = true;
 	private boolean identificado;
 	private int id;
+	private String ANDROID_ADDRESS;
 
 	public Comunicacion() {
 
@@ -33,6 +34,7 @@ public class Comunicacion extends Observable implements Runnable {
 
 	/**
 	 * Metodo para hacer autoidentificacion en un grupo Multicast
+	 * 
 	 * @throws IOException
 	 */
 	private void autoID() throws IOException {
@@ -66,8 +68,11 @@ public class Comunicacion extends Observable implements Runnable {
 
 	/**
 	 * Metodo para enviar paquetes mediante conexion UDP
-	 * @param info Object
-	 * @param ipAdrs String
+	 * 
+	 * @param info
+	 *            Object
+	 * @param ipAdrs
+	 *            String
 	 * @throws IOException
 	 */
 	public void enviar(Object info, String ipAdrs) throws IOException {
@@ -79,7 +84,9 @@ public class Comunicacion extends Observable implements Runnable {
 	}
 
 	/**
-	 * Metodo para recibir paquetes mediante conexion UDP y retornar el paquete recibido
+	 * Metodo para recibir paquetes mediante conexion UDP y retornar el paquete
+	 * recibido
+	 * 
 	 * @return DatagramPacket
 	 * @throws IOException
 	 */
@@ -92,7 +99,9 @@ public class Comunicacion extends Observable implements Runnable {
 
 	/**
 	 * Metodo para serializar un objeto
-	 * @param o Object
+	 * 
+	 * @param o
+	 *            Object
 	 * @return byte[]
 	 */
 	private byte[] serialize(Object o) {
@@ -112,7 +121,9 @@ public class Comunicacion extends Observable implements Runnable {
 
 	/**
 	 * Metodo para deserializar un byte array
-	 * @param b byte[]
+	 * 
+	 * @param b
+	 *            byte[]
 	 * @return Object
 	 */
 	private Object deserialize(byte[] b) {
@@ -149,6 +160,10 @@ public class Comunicacion extends Observable implements Runnable {
 								}
 							}
 							
+							if (!dPacket.getAddress().toString().contains(GROUP_ADDRESS)) {
+								ANDROID_ADDRESS = dPacket.getAddress().toString();
+							}
+
 							if (!(deserialize(dPacket.getData()) instanceof MensajeID)) {
 								setChanged();
 								notifyObservers(deserialize(dPacket.getData()));
@@ -169,5 +184,9 @@ public class Comunicacion extends Observable implements Runnable {
 
 	public String getGroupAddress() {
 		return GROUP_ADDRESS;
+	}
+
+	public String getAndroidAddress() {
+		return ANDROID_ADDRESS;
 	}
 }

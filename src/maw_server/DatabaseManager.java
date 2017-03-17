@@ -37,7 +37,7 @@ public class DatabaseManager {
 		}
 	}
 
-	public void agregar(Object o) {
+	public void agregarUsuario(Object o) {
 		if (o instanceof Usuario) {
 			XML users = data.getChild("usuarios");
 			XML[] users_all = users.getChildren();
@@ -69,7 +69,7 @@ public class DatabaseManager {
 
 		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
 
-		if (usuarios.size() == 0) {
+		if (usuarios.isEmpty()) {
 			for (int i = 0; i < users_all.length; i++) {
 				String name = users_all[i].getString("nombre");
 				String pass = users_all[i].getString("password");

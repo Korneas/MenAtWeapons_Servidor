@@ -2,5 +2,6 @@
 <datos>
   <usuarios>
     <user id="0" nombre="Korneas" password="elPapuPro"/>
+    <user id="1" nombre="Artur" password="dibujo"/>
   </usuarios>
 </datos>
